@@ -7,7 +7,6 @@ class BasePaths {
   static const basePlaceholderPath = "assets/placeholders";
   static const baseVideoPath = "assets/videos";
   static const baseSoundPath = "assets/sounds";
-  static const baseFontPath = "assets/fonts";
   static const baseOtherPath = "assets/others";
 
   static const baseProdUrl = "http://productionURL.com";

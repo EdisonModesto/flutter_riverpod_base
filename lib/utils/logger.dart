@@ -23,11 +23,11 @@ class Log {
     logger.w(message);
   }
 
-  void error(String message, StackTrace error) {
-    logger.e(message, error: error);
+  void error(String message) {
+    logger.e(message);
   }
 
-  void fatal(String message, error, stackTrace) {
-    logger.f(message, error: error, stackTrace: stackTrace);
+  void fatal(String message) {
+    logger.f(message);
   }
 }
