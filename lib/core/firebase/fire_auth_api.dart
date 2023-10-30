@@ -1,34 +1,32 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_base/utils/logger.dart';
+import 'package:fpdart/fpdart.dart';
+
+final authApiProvider = StateProvider((ref) {
+  return FireAuthApi();
+});
 
 class FireAuthApi {
-  Future<void> signInEmail(email, password) async {
+  Future<Either<String, UserCredential>> signUpEmail(email, password) async {
     try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+      final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+      return Right(credential);
     } on FirebaseAuthException catch (e) {
-      Log().error(e.toString());
-      throw e.code;
+      return Left(e.code);
     } catch (e) {
-      Log().error(e.toString());
+      return Left(e.toString());
     }
   }
 
-  Future<void> signUpEmail(email, password) async {
+  Future<Either<String, UserCredential>> signInEmail(email, password) async {
     try {
-      final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+      return Right(credential);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        Log().error('The password provided is too weak.');
-        throw Exception('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        Log().error('The account already exists for that email.');
-        throw Exception('The account already exists for that email.');
-      }
+      return Left(e.code);
     } catch (e) {
-      Log().error(e.toString());
+      return Left(e.toString());
     }
   }
 

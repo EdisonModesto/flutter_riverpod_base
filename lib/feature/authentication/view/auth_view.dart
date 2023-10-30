@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_base/commons/providers/fire_auth_provider.dart';
-import 'package:flutter_riverpod_base/commons/views/widgets/buttons.dart';
-import 'package:flutter_riverpod_base/commons/views/widgets/fields.dart';
-import 'package:flutter_riverpod_base/feature/authentication/repository/auth_repository.dart';
-import 'package:flutter_riverpod_base/res/themes.dart';
+import 'package:flutter_riverpod_base/feature/authentication/view/widgets/login_form.dart';
+import 'package:flutter_riverpod_base/feature/authentication/view/widgets/register_form.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -22,9 +20,6 @@ class AuthView extends ConsumerStatefulWidget {
 }
 
 class _AuthViewState extends ConsumerState<AuthView> {
-  final emailCtrl = TextEditingController();
-  final passwordCtrl = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     //final userId = ref.watch(userIdProvider);
@@ -64,22 +59,15 @@ class _AuthViewState extends ConsumerState<AuthView> {
                   const SizedBox(
                     height: 50,
                   ),
-                  AppFieldEmail(controller: emailCtrl),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  AppFieldPassword(controller: passwordCtrl),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  AppButtonFlat(
-                    bgColor: AppColors().primary,
-                    fgColor: AppColors().white,
-                    text: "Login",
-                    onTap: () {
-                      AuthRepo().signInEmail(emailCtrl.text, passwordCtrl.text);
-                    },
-                  ),
+                  SizedBox(
+                    height: 300,
+                    child: PageView(
+                      children: const [
+                        LoginForm(),
+                        RegisterForm(),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),

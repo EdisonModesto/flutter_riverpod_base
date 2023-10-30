@@ -1,10 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_riverpod_base/feature/authentication/repository/auth_repository.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../commons/providers/fire_auth_provider.dart';
-import '../../../res/strings.dart';
+import '../../../commons/providers/user_data_provider.dart';
 import '../../../utils/logger.dart';
 import '../../authentication/view/auth_view.dart';
 import '../../product/view/products.dart';
@@ -33,14 +33,24 @@ class _HomeViewState extends ConsumerState<HomeView> {
       },
     );
 
+    final userData = ref.watch(userDataProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: InkWell(
           onTap: () async {
-            await AuthRepo().signOut();
+            FirebaseAuth.instance.signOut();
           },
-          child: const Text(
-            AppStrings.appName,
+          child: userData.when(
+            data: (data) {
+              return Text(data.email!);
+            },
+            error: (error, stack) {
+              return null;
+            },
+            loading: () {
+              return const CircularProgressIndicator();
+            },
           ),
         ),
       ),
