@@ -60,7 +60,7 @@ class _AuthViewState extends ConsumerState<AuthView> {
                     height: 50,
                   ),
                   SizedBox(
-                    height: 300,
+                    height: 400,
                     child: PageView(
                       children: const [
                         LoginForm(),

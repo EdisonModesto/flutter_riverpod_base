@@ -4,7 +4,7 @@ import 'package:flutter_riverpod_base/utils/value_validator.dart';
 
 class AppFieldEmail extends ConsumerStatefulWidget {
   AppFieldEmail({super.key, required this.controller});
-  TextEditingController controller;
+  final TextEditingController controller;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _AppFieldEmailState();
@@ -35,8 +35,13 @@ class _AppFieldEmailState extends ConsumerState<AppFieldEmail> {
 }
 
 class AppFieldPassword extends ConsumerStatefulWidget {
-  AppFieldPassword({super.key, required this.controller});
-  TextEditingController controller;
+  AppFieldPassword({
+    super.key,
+    required this.controller,
+    this.isRegister,
+  });
+  final TextEditingController controller;
+  final bool? isRegister;
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _AppFieldPasswordState();
 }
@@ -52,7 +57,11 @@ class _AppFieldPasswordState extends ConsumerState<AppFieldPassword> {
         if (ValueValidator.isValidPassword(value ?? '')) {
           return null;
         }
-        return 'The password must be:\n- at least 8 characters long\n- at least 1 uppercase letter\n- contains 1 lowercase letter\n- contains 1 digit.';
+
+        if (widget.isRegister == true) {
+          return 'The password must be:\n- at least 8 characters long\n- at least 1 uppercase letter\n- contains 1 lowercase letter\n- contains 1 digit.';
+        }
+        return 'Please enter a valid password';
       },
       autovalidateMode: AutovalidateMode.onUserInteraction,
       obscureText: isObscured,

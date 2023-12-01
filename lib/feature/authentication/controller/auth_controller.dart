@@ -1,3 +1,4 @@
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_base/feature/authentication/repository/auth_repository.dart';
 import 'package:flutter_riverpod_base/feature/authentication/repository/firestore_repository.dart';
@@ -16,12 +17,12 @@ class AuthController {
 
   AuthController({required this.authRepo, required this.storeRepo});
 
-  Future<void> signInEmail(String email, String password) async {
+  Future<dynamic> signInEmail(String email, String password) async {
     final result = await authRepo.signInEmail(email, password);
     result.fold(
       (error) {
-        Fluttertoast.showToast(msg: error);
-        return error;
+        EasyLoading.showError(error);
+        throw Exception(error);
       },
       (credential) {
         return credential;
@@ -29,12 +30,12 @@ class AuthController {
     );
   }
 
-  Future<void> signUpEmail(String email, String password) async {
+  Future<dynamic> signUpEmail(String email, String password) async {
     final result = await authRepo.signUpEmail(email, password);
     result.fold(
       (error) {
-        Fluttertoast.showToast(msg: error);
-        return error;
+        EasyLoading.showError(error);
+        throw Exception(error);
       },
       (credential) async {
         storeRepo.firestoreApi.userID = credential.user!.uid;
@@ -42,7 +43,7 @@ class AuthController {
         storeResult.fold(
           (error) {
             Fluttertoast.showToast(msg: error);
-            return error;
+            return Exception(error);
           },
           (success) {
             Fluttertoast.showToast(msg: 'Account created in firestore');
