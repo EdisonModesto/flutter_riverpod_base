@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../models/product.dart';
-import '../../../res/strings.dart';
 import '../../../utils/config.dart';
-import '../../../utils/snackbar_service.dart';
 import '../repository/product.dart';
 
 final productControllerProvider = Provider((ref) {
@@ -21,13 +19,13 @@ class ProductController {
     return result.fold(
       (failure) {
         if (AppConfig.devMode && context != null) {
-          SnackBarService.showSnackBar(context: context, message: SnackBarMessages.productLoadFailed);
+          // SnackBarService.showSnackBar(context: context, message: SnackBarMessages.productLoadFailed);
         }
         return null;
       },
       (products) {
         if (AppConfig.devMode && context != null) {
-          SnackBarService.showSnackBar(context: context, message: SnackBarMessages.productLoadSuccess);
+          //  SnackBarService.showSnackBar(context: context, message: SnackBarMessages.productLoadSuccess);
         }
         return products;
       },

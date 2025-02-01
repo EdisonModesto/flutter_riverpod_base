@@ -7,6 +7,7 @@ class SplashView extends StatefulWidget {
   const SplashView({Key? key}) : super(key: key);
 
   static const routePath = "/splash";
+  static const routeName = "splash";
 
   @override
   State<SplashView> createState() => _SplashViewState();

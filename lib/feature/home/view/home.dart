@@ -13,6 +13,7 @@ class HomeView extends ConsumerStatefulWidget {
   const HomeView({super.key});
 
   static const routePath = "/home";
+  static const routeName = "home";
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _HomeViewState();

@@ -14,6 +14,7 @@ class AuthView extends ConsumerStatefulWidget {
   const AuthView({super.key});
 
   static const routePath = "/auth";
+  static const routeName = "auth";
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _AuthViewState();
