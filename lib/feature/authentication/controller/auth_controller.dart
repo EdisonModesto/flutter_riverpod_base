@@ -19,7 +19,7 @@ class AuthController {
 
   Future<dynamic> signInEmail(String email, String password) async {
     final result = await authRepo.signInEmail(email, password);
-    result.fold(
+    return result.fold(
       (error) {
         EasyLoading.showError(error);
         throw Exception(error);
@@ -32,7 +32,7 @@ class AuthController {
 
   Future<dynamic> signUpEmail(String email, String password) async {
     final result = await authRepo.signUpEmail(email, password);
-    result.fold(
+    return result.fold(
       (error) {
         EasyLoading.showError(error);
         throw Exception(error);
@@ -40,7 +40,7 @@ class AuthController {
       (credential) async {
         storeRepo.firestoreApi.userID = credential.user!.uid;
         final storeResult = await storeRepo.createUser(email, password);
-        storeResult.fold(
+        return storeResult.fold(
           (error) {
             Fluttertoast.showToast(msg: error);
             return Exception(error);
@@ -50,8 +50,6 @@ class AuthController {
             return success;
           },
         );
-
-        return credential;
       },
     );
   }

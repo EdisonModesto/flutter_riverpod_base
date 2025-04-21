@@ -34,7 +34,7 @@ class ProductRepo {
           final List<Product> products = [];
           for (dynamic product in productJson) {
             log(product.toString(), name: LogLabel.product);
-            products.add(Product.fromMap(product));
+            products.add(Product.fromJson(product));
           }
           return Right(products);
         } catch (e, stktrc) {

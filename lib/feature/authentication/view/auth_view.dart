@@ -8,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../res/strings.dart';
 import '../../../utils/logger.dart';
-import '../../home/view/home.dart';
+import '../../home/home_nav.dart';
 
 class AuthView extends ConsumerStatefulWidget {
   const AuthView({super.key});
@@ -23,20 +23,6 @@ class AuthView extends ConsumerStatefulWidget {
 class _AuthViewState extends ConsumerState<AuthView> {
   @override
   Widget build(BuildContext context) {
-    //final userId = ref.watch(userIdProvider);
-
-    ref.listen(
-      userIdProvider,
-      (previous, next) {
-        if (next.value != null) {
-          Log().info("User is logged in");
-          GoRouter.of(context).pushReplacement(HomeView.routePath);
-        } else {
-          Log().info("User is not logged in");
-        }
-      },
-    );
-
     return Scaffold(
       body: SafeArea(
         child: Container(

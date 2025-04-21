@@ -16,4 +16,16 @@ class ValueValidator {
     final contactNumberRegex = RegExp(r'^(?:\+63|0)\d{10}$');
     return contactNumberRegex.hasMatch(number);
   }
+
+  static bool isValidName(String name) {
+    // Name should have at least 2 characters
+    final nameRegex = RegExp(r'^.{2,}$');
+    return nameRegex.hasMatch(name);
+  }
+
+  static bool isValidAddress(String address) {
+    // Address should have at least 5 characters
+    final addressRegex = RegExp(r'^.{5,}$');
+    return addressRegex.hasMatch(address);
+  }
 }

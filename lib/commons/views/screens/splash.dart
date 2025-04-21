@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod_base/feature/home/dashboard/dashboard_screen.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../feature/home/view/home.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({Key? key}) : super(key: key);
@@ -18,7 +17,7 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2)).then((value) {
-      context.go(HomeView.routePath);
+      context.go(DashboardScreen.routePath);
     });
   }
 
