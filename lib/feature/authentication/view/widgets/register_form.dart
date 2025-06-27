@@ -29,18 +29,11 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
       child: Column(
         children: [
           AppFieldEmail(controller: emailCtrl),
-          const SizedBox(
-            height: 20,
-          ),
-          AppFieldPassword(
-            controller: passwordCtrl,
-            isRegister: true,
-          ),
-          const SizedBox(
-            height: 50,
-          ),
+          const SizedBox(height: 20),
+          AppFieldPassword(controller: passwordCtrl, isRegister: true),
+          const SizedBox(height: 50),
           AsyncButtonFlat(
-            AsyncBtnStatesController: btnStateController,
+            asyncBtnStatesController: btnStateController,
             bgColor: AppColors().primary,
             fgColor: AppColors().white,
             text: "Signup",

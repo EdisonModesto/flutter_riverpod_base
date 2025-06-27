@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_riverpod_base/core/firebase/fire_auth_api.dart';
+import 'package:flutter_riverpod_base/core/firebase/authentication/fire_auth_api.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fpdart/fpdart.dart';
 
@@ -16,7 +16,7 @@ class AuthRepo {
 
   AuthRepo({required this.fireAuthApi});
 
-  Future<Either<String, UserCredential>> signUpEmail(email, password) async {
+  Future<Either<String, UserCredential>> signUpEmail(String email, String password) async {
     Log().info('Registering user with email: $email');
     final result = await fireAuthApi.signUpEmail(email, password);
     return result.fold(
@@ -31,7 +31,7 @@ class AuthRepo {
     );
   }
 
-  Future<Either<String, UserCredential>> signInEmail(email, password) async {
+  Future<Either<String, UserCredential>> signInEmail(String email, String password) async {
     Log().info('Signing in user with email: $email');
     final result = await fireAuthApi.signInEmail(email, password);
     return result.fold(

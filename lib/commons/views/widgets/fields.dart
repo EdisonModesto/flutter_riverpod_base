@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_base/utils/value_validator.dart';
 
 class AppFieldEmail extends ConsumerStatefulWidget {
-  AppFieldEmail({super.key, required this.controller});
+  const AppFieldEmail({super.key, required this.controller});
   final TextEditingController controller;
 
   @override
@@ -24,22 +24,14 @@ class _AppFieldEmailState extends ConsumerState<AppFieldEmail> {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: const InputDecoration(
         hintText: "Email",
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(10),
-          ),
-        ),
+        border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
       ),
     );
   }
 }
 
 class AppFieldPassword extends ConsumerStatefulWidget {
-  AppFieldPassword({
-    super.key,
-    required this.controller,
-    this.isRegister,
-  });
+  const AppFieldPassword({super.key, required this.controller, this.isRegister});
   final TextEditingController controller;
   final bool? isRegister;
   @override
@@ -75,15 +67,9 @@ class _AppFieldPasswordState extends ConsumerState<AppFieldPassword> {
               isObscured = !isObscured;
             });
           },
-          child: Icon(
-            isObscured ? Icons.visibility_off : Icons.visibility,
-          ),
+          child: Icon(isObscured ? Icons.visibility_off : Icons.visibility),
         ),
-        border: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(10),
-          ),
-        ),
+        border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
       ),
     );
   }

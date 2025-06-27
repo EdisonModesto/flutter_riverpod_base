@@ -30,15 +30,11 @@ class _LoginFormState extends ConsumerState<LoginForm> {
       child: Column(
         children: [
           AppFieldEmail(controller: emailCtrl),
-          const SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20),
           AppFieldPassword(controller: passwordCtrl),
-          const SizedBox(
-            height: 50,
-          ),
+          const SizedBox(height: 50),
           AsyncButtonFlat(
-            AsyncBtnStatesController: btnStateController,
+            asyncBtnStatesController: btnStateController,
             bgColor: AppColors().primary,
             fgColor: AppColors().white,
             text: "Login",

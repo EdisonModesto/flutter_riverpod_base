@@ -49,3 +49,4 @@ firebase_options.dart
 
 .fvm
 .vscode
+.env

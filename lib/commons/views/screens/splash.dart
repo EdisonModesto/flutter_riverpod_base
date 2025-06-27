@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../feature/home/view/home.dart';
 
 class SplashView extends StatefulWidget {
-  const SplashView({Key? key}) : super(key: key);
+  const SplashView({super.key});
 
   static const routePath = "/splash";
   static const routeName = "splash";
@@ -18,7 +18,9 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2)).then((value) {
-      context.go(HomeView.routePath);
+      if (mounted) {
+        context.go(HomeView.routePath);
+      }
     });
   }
 

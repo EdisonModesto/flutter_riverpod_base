@@ -1,9 +1,10 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_base/models/user.dart';
 
-import '../../core/firebase/fire_firestore_api.dart';
+import '../../core/firebase/firestore/fire_firestore_api.dart';
 import 'fire_auth_provider.dart';
 
 final userDataProvider = StreamProvider<UserModel>((ref) {
@@ -16,7 +17,7 @@ final userDataProvider = StreamProvider<UserModel>((ref) {
     storeApi.getUser().asStream().listen((event) {
       return event.fold((l) {}, (r) {
         r.listen((event) {
-          print('new data added');
+          log('new data added');
           streamController.add(UserModel.fromJson(event.data()!));
         });
       });

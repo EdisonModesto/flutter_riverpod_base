@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod_base/commons/providers/auth_state_provider.dart';
@@ -14,9 +16,9 @@ final GoRouter router = GoRouter(
   debugLogDiagnostics: true,
   redirect: (context, state) {
     if (FirebaseAuth.instance.currentUser == null) {
-      print('the name: ${state.matchedLocation}');
+      log('the name: ${state.matchedLocation}');
 
-      print('the name: ${state.matchedLocation.split('/')[1]}');
+      log('the name: ${state.matchedLocation.split('/')[1]}');
 
       if (authLocations.contains(state.matchedLocation.split('/')[1])) {
         return null;

@@ -1,11 +1,11 @@
-/// Contains all the strings used accross the app.
-/// Avoid hard coding strings.
-/// All the strings must be added in this file.
-/// ```dart
-/// class AppStrings{
-///  static const appName = "Riverpod app template";
-///}
-///```
+//  Contains all the strings used accross the app.
+//  Avoid hard coding strings.
+//  All the strings must be added in this file.
+//  ```dart
+//  class AppStrings{
+//   static const appName = "Riverpod app template";
+// }
+// ```
 
 class AppStrings {
   static const appName = "Riverpod app template";
