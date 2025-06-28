@@ -5,17 +5,9 @@ class Product {
   final int id;
   final String title;
   final String description;
-  Product({
-    required this.id,
-    required this.title,
-    required this.description,
-  });
+  Product({required this.id, required this.title, required this.description});
 
-  Product copyWith({
-    int? id,
-    String? title,
-    String? description,
-  }) {
+  Product copyWith({int? id, String? title, String? description}) {
     return Product(
       id: id ?? this.id,
       title: title ?? this.title,
@@ -41,16 +33,20 @@ class Product {
 
   String toJson() => json.encode(toMap());
 
-  factory Product.fromJson(String source) => Product.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Product.fromJson(String source) =>
+      Product.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'Product(id: $id, title: $title, description: $description)';
+  String toString() =>
+      'Product(id: $id, title: $title, description: $description)';
 
   @override
   bool operator ==(covariant Product other) {
     if (identical(this, other)) return true;
 
-    return other.id == id && other.title == title && other.description == description;
+    return other.id == id &&
+        other.title == title &&
+        other.description == description;
   }
 
   @override

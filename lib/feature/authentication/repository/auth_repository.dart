@@ -16,7 +16,10 @@ class AuthRepo {
 
   AuthRepo({required this.fireAuthApi});
 
-  Future<Either<String, UserCredential>> signUpEmail(String email, String password) async {
+  Future<Either<String, UserCredential>> signUpEmail(
+    String email,
+    String password,
+  ) async {
     Log().info('Registering user with email: $email');
     final result = await fireAuthApi.signUpEmail(email, password);
     return result.fold(
@@ -31,7 +34,10 @@ class AuthRepo {
     );
   }
 
-  Future<Either<String, UserCredential>> signInEmail(String email, String password) async {
+  Future<Either<String, UserCredential>> signInEmail(
+    String email,
+    String password,
+  ) async {
     Log().info('Signing in user with email: $email');
     final result = await fireAuthApi.signInEmail(email, password);
     return result.fold(

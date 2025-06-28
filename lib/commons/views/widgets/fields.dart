@@ -24,18 +24,25 @@ class _AppFieldEmailState extends ConsumerState<AppFieldEmail> {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: const InputDecoration(
         hintText: "Email",
-        border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+        ),
       ),
     );
   }
 }
 
 class AppFieldPassword extends ConsumerStatefulWidget {
-  const AppFieldPassword({super.key, required this.controller, this.isRegister});
+  const AppFieldPassword({
+    super.key,
+    required this.controller,
+    this.isRegister,
+  });
   final TextEditingController controller;
   final bool? isRegister;
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _AppFieldPasswordState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _AppFieldPasswordState();
 }
 
 class _AppFieldPasswordState extends ConsumerState<AppFieldPassword> {
@@ -69,7 +76,9 @@ class _AppFieldPasswordState extends ConsumerState<AppFieldPassword> {
           },
           child: Icon(isObscured ? Icons.visibility_off : Icons.visibility),
         ),
-        border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+        border: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+        ),
       ),
     );
   }

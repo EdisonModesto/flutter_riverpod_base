@@ -10,9 +10,13 @@ part 'fire_auth_api.g.dart';
 FireAuthApi authApi(Ref ref) => FireAuthApi();
 
 class FireAuthApi {
-  Future<Either<String, UserCredential>> signUpEmail(String email, String password) async {
+  Future<Either<String, UserCredential>> signUpEmail(
+    String email,
+    String password,
+  ) async {
     try {
-      final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+      final credential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
       return Right(credential);
     } on FirebaseAuthException catch (e) {
       return Left(e.code);
@@ -21,9 +25,15 @@ class FireAuthApi {
     }
   }
 
-  Future<Either<String, UserCredential>> signInEmail(String email, String password) async {
+  Future<Either<String, UserCredential>> signInEmail(
+    String email,
+    String password,
+  ) async {
     try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       return Right(credential);
     } on FirebaseAuthException catch (e) {
       return Left(e.code);

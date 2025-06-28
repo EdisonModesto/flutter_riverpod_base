@@ -17,9 +17,7 @@ class ProductListItem extends StatelessWidget {
             product.title,
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          const SizedBox(height: 10),
           Text(product.description),
         ],
       ),

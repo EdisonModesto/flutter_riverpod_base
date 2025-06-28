@@ -13,7 +13,10 @@ import 'firebase_options.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
-  await Supabase.initialize(url: Secrets.supabaseUrl, anonKey: Secrets.supabaseAnonKey);
+  await Supabase.initialize(
+    url: Secrets.supabaseUrl,
+    anonKey: Secrets.supabaseAnonKey,
+  );
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const ProviderScope(child: MyApp()));
 }

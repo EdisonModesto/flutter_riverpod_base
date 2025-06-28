@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
 
-import '../../../core/api.dart';
+import '../../../core/api/api.dart';
 import '../../../core/failure.dart';
 import '../../../core/type_def.dart';
 import '../../../models/product.dart';
@@ -21,7 +21,10 @@ class ProductRepo {
   ProductRepo({required API api}) : _api = api;
 
   FutureEither<List<Product>> getProducts() async {
-    final result = await _api.getRequest(url: Endpoints.getProducts, requireAuth: false);
+    final result = await _api.getRequest(
+      url: Endpoints.getProducts,
+      requireAuth: false,
+    );
     return result.fold(
       (Failure failure) {
         log(failure.message, name: LogLabel.product);
@@ -39,10 +42,12 @@ class ProductRepo {
           return Right(products);
         } catch (e, stktrc) {
           log(FailureMessage.jsonParsingFailed, name: LogLabel.product);
-          return Left(Failure(
-            message: FailureMessage.jsonParsingFailed,
-            stackTrace: stktrc,
-          ));
+          return Left(
+            Failure(
+              message: FailureMessage.jsonParsingFailed,
+              stackTrace: stktrc,
+            ),
+          );
         }
       },
     );

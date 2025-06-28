@@ -25,17 +25,14 @@ class _AuthViewState extends ConsumerState<AuthView> {
   Widget build(BuildContext context) {
     //final userId = ref.watch(userIdProvider);
 
-    ref.listen(
-      userIdProvider,
-      (previous, next) {
-        if (next.value != null) {
-          Log().info("User is logged in");
-          GoRouter.of(context).pushReplacement(HomeView.routePath);
-        } else {
-          Log().info("User is not logged in");
-        }
-      },
-    );
+    ref.listen(userIdProvider, (previous, next) {
+      if (next.value != null) {
+        Log().info("User is logged in");
+        GoRouter.of(context).pushReplacement(HomeView.routePath);
+      } else {
+        Log().info("User is not logged in");
+      }
+    });
 
     return Scaffold(
       body: SafeArea(
@@ -57,18 +54,13 @@ class _AuthViewState extends ConsumerState<AuthView> {
                       color: Colors.black,
                     ),
                   ),
-                  const SizedBox(
-                    height: 50,
-                  ),
+                  const SizedBox(height: 50),
                   SizedBox(
                     height: 400,
                     child: PageView(
-                      children: const [
-                        LoginForm(),
-                        RegisterForm(),
-                      ],
+                      children: const [LoginForm(), RegisterForm()],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

@@ -12,9 +12,15 @@ class SupabaseAuth {
   final SupabaseClient supabase = Supabase.instance.client;
 
   //* Sign up with email and password
-  Future<Either<String, AuthResponse>> signUpEmail(String email, String password) async {
+  Future<Either<String, AuthResponse>> signUpEmail(
+    String email,
+    String password,
+  ) async {
     try {
-      final credential = await supabase.auth.signUp(email: email, password: password);
+      final credential = await supabase.auth.signUp(
+        email: email,
+        password: password,
+      );
       return Right(credential);
     } on AuthException catch (e) {
       return Left(e.message);
@@ -24,9 +30,15 @@ class SupabaseAuth {
   }
 
   //* Sign in with email and password
-  Future<Either<String, AuthResponse>> signInEmail(String email, String password) async {
+  Future<Either<String, AuthResponse>> signInEmail(
+    String email,
+    String password,
+  ) async {
     try {
-      final credential = await supabase.auth.signInWithPassword(email: email, password: password);
+      final credential = await supabase.auth.signInWithPassword(
+        email: email,
+        password: password,
+      );
       return Right(credential);
     } on AuthException catch (e) {
       return Left(e.message);

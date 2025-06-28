@@ -13,7 +13,10 @@ class StoreAuthRepo {
 
   StoreAuthRepo({required this.firestoreApi});
 
-  Future<Either<String, String>> createUser(String email, String password) async {
+  Future<Either<String, String>> createUser(
+    String email,
+    String password,
+  ) async {
     final result = await firestoreApi.createUser(email, password);
 
     return result.fold(

@@ -4,7 +4,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppButtonFlat extends ConsumerStatefulWidget {
-  const AppButtonFlat({super.key, required this.bgColor, required this.fgColor, required this.text, required this.onTap});
+  const AppButtonFlat({
+    super.key,
+    required this.bgColor,
+    required this.fgColor,
+    required this.text,
+    required this.onTap,
+  });
 
   final Color bgColor;
   final Color fgColor;
@@ -25,7 +31,10 @@ class _AppButtonFlatState extends ConsumerState<AppButtonFlat> {
         fixedSize: Size(MediaQuery.of(context).size.width, 60),
       ),
       onPressed: widget.onTap,
-      child: Text(widget.text, style: GoogleFonts.lato(fontSize: 16, color: widget.fgColor)),
+      child: Text(
+        widget.text,
+        style: GoogleFonts.lato(fontSize: 16, color: widget.fgColor),
+      ),
     );
   }
 }
@@ -46,7 +55,8 @@ class AsyncButtonFlat extends ConsumerStatefulWidget {
   final Future<void> Function() onTap;
   final AsyncBtnStatesController asyncBtnStatesController;
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _AsyncButtonFlatState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _AsyncButtonFlatState();
 }
 
 class _AsyncButtonFlatState extends ConsumerState<AsyncButtonFlat> {
@@ -62,17 +72,43 @@ class _AsyncButtonFlatState extends ConsumerState<AsyncButtonFlat> {
       onPressed: widget.onTap,
       loadingStyle: AsyncBtnStateStyle(
         style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
-        widget: const SizedBox.square(dimension: 24, child: CircularProgressIndicator(color: Colors.white)),
+        widget: const SizedBox.square(
+          dimension: 24,
+          child: CircularProgressIndicator(color: Colors.white),
+        ),
       ),
       successStyle: AsyncBtnStateStyle(
-        style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
-        widget: Row(mainAxisSize: MainAxisSize.min, children: const [Icon(Icons.check), SizedBox(width: 4), Text('Success!')]),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.green,
+          foregroundColor: Colors.white,
+        ),
+        widget: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: const [
+            Icon(Icons.check),
+            SizedBox(width: 4),
+            Text('Success!'),
+          ],
+        ),
       ),
       failureStyle: AsyncBtnStateStyle(
-        style: ElevatedButton.styleFrom(backgroundColor: Colors.red, foregroundColor: Colors.white),
-        widget: Row(mainAxisSize: MainAxisSize.min, children: const [Icon(Icons.error), SizedBox(width: 4), Text('Something went wrong!')]),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.red,
+          foregroundColor: Colors.white,
+        ),
+        widget: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: const [
+            Icon(Icons.error),
+            SizedBox(width: 4),
+            Text('Something went wrong!'),
+          ],
+        ),
       ),
-      child: Text(widget.text, style: GoogleFonts.lato(fontSize: 16, color: widget.fgColor)),
+      child: Text(
+        widget.text,
+        style: GoogleFonts.lato(fontSize: 16, color: widget.fgColor),
+      ),
     );
   }
 }

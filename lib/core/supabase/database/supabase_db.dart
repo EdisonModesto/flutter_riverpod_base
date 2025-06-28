@@ -14,7 +14,10 @@ class SupabaseDb {
   //* Create a new user
   Future<Either<String, Unit>> createUser(String email, String password) async {
     try {
-      final result = await supabase.from('users').insert({'email': email, 'password': password});
+      final result = await supabase.from('users').insert({
+        'email': email,
+        'password': password,
+      });
       return Right(result);
     } on AuthException catch (e) {
       return Left(e.message);
@@ -26,7 +29,11 @@ class SupabaseDb {
   //* Fetch the current user
   Future<Either<String, PostgrestMap>> getUser(String id) async {
     try {
-      final result = await supabase.from('users').select('*').eq('id', id).single();
+      final result = await supabase
+          .from('users')
+          .select('*')
+          .eq('id', id)
+          .single();
       return Right(result);
     } on AuthException catch (e) {
       return Left(e.message);

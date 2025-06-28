@@ -9,7 +9,8 @@ import '../../../commons/providers/fire_auth_provider.dart';
 part 'fire_firestore_api.g.dart';
 
 @riverpod
-FirestoreApi firestoreApi(Ref ref) => FirestoreApi(userID: ref.watch(userIdProvider).value ?? '');
+FirestoreApi firestoreApi(Ref ref) =>
+    FirestoreApi(userID: ref.watch(userIdProvider).value ?? '');
 
 class FirestoreApi {
   String userID;
@@ -17,7 +18,10 @@ class FirestoreApi {
 
   final _users = FirebaseFirestore.instance.collection('Users');
 
-  Future<Either<String, String>> createUser(String email, String password) async {
+  Future<Either<String, String>> createUser(
+    String email,
+    String password,
+  ) async {
     try {
       Log().info('Creating user with userId: $userID');
       await _users.doc(userID).set({'email': email, 'password': password});
@@ -28,7 +32,8 @@ class FirestoreApi {
     }
   }
 
-  Future<Either<String, Stream<DocumentSnapshot<Map<String, dynamic>>>>> getUser() async {
+  Future<Either<String, Stream<DocumentSnapshot<Map<String, dynamic>>>>>
+  getUser() async {
     try {
       Log().info('Getting user with userId: $userID');
       final user = _users.doc(userID).snapshots();

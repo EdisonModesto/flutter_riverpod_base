@@ -22,17 +22,14 @@ class HomeView extends ConsumerStatefulWidget {
 class _HomeViewState extends ConsumerState<HomeView> {
   @override
   Widget build(BuildContext context) {
-    ref.listen(
-      userIdProvider,
-      (previous, next) {
-        if (next.value != null) {
-          Log().info("User is logged in");
-        } else {
-          Log().info("User is not logged in");
-          GoRouter.of(context).pushReplacement(AuthView.routePath);
-        }
-      },
-    );
+    ref.listen(userIdProvider, (previous, next) {
+      if (next.value != null) {
+        Log().info("User is logged in");
+      } else {
+        Log().info("User is not logged in");
+        GoRouter.of(context).pushReplacement(AuthView.routePath);
+      }
+    });
 
     final userData = ref.watch(userDataProvider);
 

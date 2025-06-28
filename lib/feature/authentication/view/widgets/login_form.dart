@@ -44,7 +44,10 @@ class _LoginFormState extends ConsumerState<LoginForm> {
 
                 try {
                   final auth = ref.read(authControllerProvider);
-                  var result = await auth.signInEmail(emailCtrl.text, passwordCtrl.text);
+                  var result = await auth.signInEmail(
+                    emailCtrl.text,
+                    passwordCtrl.text,
+                  );
                   Log().info(result.runtimeType.toString());
                   EasyLoading.showSuccess('Welcome Back');
                   btnStateController.update(AsyncBtnState.success);

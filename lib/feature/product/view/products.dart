@@ -15,14 +15,10 @@ class ProductsList extends ConsumerWidget {
       builder: (context, snapshot) {
         final data = snapshot.data;
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const Center(child: CircularProgressIndicator());
         }
         if (snapshot.hasError) {
-          return const Center(
-            child: Text("Error Loading Data"),
-          );
+          return const Center(child: Text("Error Loading Data"));
         }
         if (snapshot.connectionState == ConnectionState.done) {
           if (data != null) {
@@ -33,14 +29,10 @@ class ProductsList extends ConsumerWidget {
               },
             );
           } else {
-            return const Center(
-              child: Text("Error Loading Data"),
-            );
+            return const Center(child: Text("Error Loading Data"));
           }
         }
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
+        return const Center(child: CircularProgressIndicator());
       },
     );
   }

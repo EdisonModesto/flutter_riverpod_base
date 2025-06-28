@@ -7,7 +7,9 @@ class ValueValidator {
 
   static bool isValidPassword(String password) {
     // Password should have at least 8 characters and contain at least one uppercase letter, one lowercase letter, and one digit
-    final passwordRegex = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
+    final passwordRegex = RegExp(
+      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$',
+    );
     return passwordRegex.hasMatch(password);
   }
 
